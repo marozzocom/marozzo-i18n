@@ -1,6 +1,6 @@
 {
   "name": "@marozzocom/marozzo-i18n",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Marozzo.com localisation library.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
