@@ -1,0 +1,57 @@
+{
+  "name": "marozzo-i18n",
+  "version": "0.1.0",
+  "description": "Marozzo.com localisation library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "clean": "rimraf dist/*",
+    "prebuild": "npm run test && npm run clean",
+    "build": "tsc",
+    "release": "standard-version && npm run build && npm publish",
+    "commit": "npx git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marozzocom/marozzo-i18n.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "keywords": [
+    "localisation",
+    "internalization",
+    "i18n"
+  ],
+  "author": "Ilkka Hartikainen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marozzocom/marozzo-i18n/issues"
+  },
+  "homepage": "https://github.com/marozzocom/marozzo-i18n#readme",
+  "dependencies": {
+    "typescript": "^3.7.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "eslint": "^6.7.2",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "standard-version": "^7.0.1",
+    "rimraf": "^3.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog",
+      "maxHeaderWidth": 100,
+      "maxLineWidth": 100,
+      "defaultType": "",
+      "defaultScope": "",
+      "defaultSubject": "",
+      "defaultBody": "",
+      "defaultIssues": ""
+    }
+  }
+}
