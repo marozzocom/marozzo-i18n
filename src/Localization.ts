@@ -1,16 +1,8 @@
-// interface ITranslations {
-//   [x: string]: typeof en
-// }
-
-type Translation = { [locale: string]: { [key: string]: string } }
+type Translation = { [key: string]: string | Translation }
 
 export class Localization {
   private static instance: Localization
   private translations: Translation
-
-  // private constructor(translations: Translation) {
-  //   this.translations = translations
-  // }
 
   static getInstance() {
     if (!Localization.instance) {
@@ -19,29 +11,24 @@ export class Localization {
     return Localization.instance
   }
 
-  set locale(translations: Translation) {
-    this.translations = {...this.translations, ...translations}
+  set = (translations: Translation) => {
+    this.translations = translations
   }
 
-  fill = (translatedString: string, ...replaceValues: string[]) => {
-    for (let i = 0; i < replaceValues?.length; i++) {
-      const reg = new RegExp(`\\{${i}}`, "g")
-      translatedString = translatedString.replace(reg, replaceValues[i])
-    }
-
-    return translatedString
-  }
-
-  getNamespace(namespace: string = "common", language = "en"): any {
-    let translation: any = this.translations[language]
-
-    for (const key of namespace.split(".")) {
-      translation = translation[key]
-    }
-
-    return translation
-  }
+  getNamespace = (namespace: string = "common") => namespace.split(".").reduce((acc, key) => acc[key], this.translations) as Translation
+  
+  get = (keys: string = "common") => keys.split(".").reduce((acc, key) => acc[key], this.translations) as string
+  
+  fill = (...replaceValues: string[]) => (key: string) => replaceValues.reduce((acc, value, index) => acc.replace(this.reg(index), value), key)
+  
+  private reg = (i: number) => new RegExp(`\\{${i}}`, "g")
 }
 
-const localization = Localization.getInstance()
-export default localization
+const { set, getNamespace, get, fill } = Localization.getInstance()
+
+export default {
+  set,
+  getNamespace,
+  get,
+  fill
+}
