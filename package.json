@@ -1,8 +1,10 @@
 {
-  "name": "marozzo-i18n",
+  "name": "@marozzocom/marozzo-i18n",
   "version": "0.1.2",
   "description": "Marozzo.com localisation library.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "clean": "rimraf dist/*",
